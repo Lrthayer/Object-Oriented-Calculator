@@ -1,0 +1,51 @@
+// $Id: assignment4.mpc 378 2010-02-07 22:09:38Z hillj $
+
+project (assignment4) {
+  exename = calc
+  install = .
+ 
+  Source_Files {
+   main.cpp
+   Add_Expr_Node.cpp
+   Binary_Expr_Node.cpp
+   Div_Expr_Node.cpp
+   Math_Expr.cpp
+   Mod_Expr_Node.cpp
+   Mult_Expr_Node.cpp
+   Sub_Expr_Node.cpp
+   Eval_Expr_Tree.cpp
+   Expr_Builder.cpp
+   Expr_Node.cpp
+   Expr_Node_Visitor.cpp
+   Expr_Tree.cpp
+   Expr_Tree_Builder.cpp
+   Number_Node.cpp
+  }
+
+  Header_Files{
+   Add_Expr_Node.h
+   Binary_Expr_Node.h
+   Div_Expr_Node.h
+   Eval_Expr_Tree.h
+   Expr_Builder.h
+   Expr_Node.h
+   Expr_Node_Visitor.h
+   Expr_Tree.h
+   Expr_Tree_Builder.h
+   Math_Expr.h
+   Mod_Expr_Node.h
+   Mult_Expr_Node.h
+   Number_Node.h
+   Sub_Expr_Node.h
+  }
+  
+  Template_Files {
+    Array_Base.cpp
+    Array.cpp
+    Stack.cpp
+  }
+    specific (make){
+    compile_flags += -std=c++0x
+
+  }
+}
