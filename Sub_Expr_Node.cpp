@@ -20,7 +20,6 @@ int Sub_Expr_Node::eval(int n1, int n2)
 
 void Sub_Expr_Node::accept(Expr_Node_Visitor& v)
 {
-    std::cout << "TEST!";
     v.Visit_Sub_Expr_Node(*this);
 }
 

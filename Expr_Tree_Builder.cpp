@@ -26,15 +26,33 @@ Expr_Node* Expr_Tree_Builder::get_expression(void)
     {
         if (o_.is_empty())
         {
-            tree_->setTree(n_.pop());
+			if (n_.is_empty())
+				tree_->setTree(root);
+			else
+				tree_->setTree(n_.pop());
             buildingTree = false;
             return tree_->getTree();
         }
         else
         {
+
             temp = o_.pop();
             temp->left_ = n_.pop();
-            temp->right_ = n_.pop();
+			if (!n_.is_empty())
+				temp->right_ = n_.pop();
+
+			if (root == nullptr)
+				root = temp;
+			else
+			{
+				Expr_Node *t;
+				t = root->right_;
+				while (t->right_ != nullptr)
+				{
+					t = t->right_;
+				}
+				t->right_ = temp;
+			}
         }
     }
 }
@@ -90,17 +108,23 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
         }
         else
         {
-            if(node->getPrec() >= o_.top()->getPrec())
+            if(node->getPrec() > o_.top()->getPrec())
             {
                 temp = o_.pop();
                 temp->left_ = n_.pop();
                 temp->right_ = n_.pop();
                 n_.push(temp);
+				o_.push(node);
             }
-            else
+            else if (node->getPrec() == o_.top()->getPrec())
             {
+				o_.push(node);
                 checking = false;
             }
+			else
+			{
+				checking = false;
+			}
         }
     }
 }

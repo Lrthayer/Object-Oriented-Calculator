@@ -8,13 +8,11 @@
 //
 // Stack, default constructor
 //
-// Lincoln, please initialize the array variable too
 // initialized array variable
 template <typename T>
-Stack <T>::Stack (void)
+Stack <T>::Stack ()
 	:
-	topS(-1),
-	data_s(10)
+	topS(-1), data_s()
 {
 
 }
@@ -57,7 +55,7 @@ void Stack <T>::push (T element)
 {
 	//this->data_s.resize(size()+1);
 	this->topS += 1;
-	this->data_s.set(topS,element);
+	this->data_s.set(topS, element);
 }
 
 //
@@ -96,7 +94,6 @@ const Stack <T> & Stack <T>::operator = (const Stack & rhs)
 //
 // clear
 //
-// Lincoln, thre is no need of using a loop here and pop out every element.
 // reset top of stack to make it seem it has been cleared.
 template <typename T>
 void Stack <T>::clear (void)

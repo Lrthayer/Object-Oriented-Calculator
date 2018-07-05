@@ -16,7 +16,7 @@ template <typename T>
 Array <T>::Array (void)
 	:
 	max_size_(DEFAULT),
-	Array_Base<T>::Array_Base()
+	Array_Base<T>::Array_Base(DEFAULT)
 {
 	
 }

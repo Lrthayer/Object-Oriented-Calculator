@@ -12,5 +12,5 @@ Expr_Node::~Expr_Node()
 
 int Expr_Node::getPrec()
 {
-
+	return this->getPrec();
 }

@@ -17,6 +17,8 @@ bool parse_expr(const std::string &infix, Expr_Builder &b)
 
     while(!input.eof())
     {
+		if (input.eof())
+			break;
         input >> token;
         if(token == "+")
         {
@@ -71,8 +73,9 @@ int main()
         }
         else
         {
-            Expr_Tree_Builder b;
-            parse_expr(infix, b);
+            Expr_Tree_Builder *b = new Expr_Tree_Builder();
+			infix = infix.substr(0, infix.size() - 1);
+            parse_expr(infix, *b);
         }
     }
     return 0;

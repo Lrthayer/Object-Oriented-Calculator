@@ -24,11 +24,11 @@ class Eval_Expr_Tree : public Expr_Node_Visitor
         virtual void Visit_Mult_Expr_Node(const Mult_Expr_Node &node);
         virtual void Visit_Div_Expr_Node(const Div_Expr_Node &node);
         virtual void Visit_Number_Node( Number_Node &node);
-        int result();
+        double result();
 
     protected:
     private:
-        int result_;
+        double result_;
         Expr_Node *left_;
         Expr_Node *right_;
 
