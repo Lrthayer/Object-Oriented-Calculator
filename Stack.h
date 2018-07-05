@@ -1,25 +1,9 @@
-// -*- C++ -*-
-// $Id: Stack.h 380 2010-02-08 05:10:33Z hillj $
-
-//==============================================================================
-/**
- * Honor Pledge:
- *
- * I pledge that I have neither given nor received any help
- * on this assignment.
- */
-//==============================================================================
-
 #ifndef _CS507_STACK_H_
 #define _CS507_STACK_H_
 
 #include <exception>
 #include "Array.h"
-/**
- * @class Stack
- *
- * Basic stack for abitrary elements.
- */
+
 template <typename T>
 class Stack
 {
@@ -41,8 +25,6 @@ public:
 
     /**
      * Initializing constructor.
-     *
-     * @param[in]      msg         Error message.
      */
     empty_exception (const char * msg)
       : std::exception (msg) { }
@@ -58,25 +40,18 @@ public:
   ~Stack (void);
 
   /**
-   * Assignment operator
-   *
-   * @param[in]      rhs           Right-hand side of operator
-   * @return         Reference to self
+  operator overload for =.
    */
   const Stack & operator = (const Stack & rhs);
 
   /**
    * Push a new \a element onto the stack. The element is inserted
    * before all the other elements in the list.
-   *
-   * @param[in]      element       Element to add to the list
    */
   void push (T element);
 
   /**
    * Remove the top-most element from the stack.
-   *
-   * @exception      empty_exception    The stack is empty.
    */
   T pop (void);
 

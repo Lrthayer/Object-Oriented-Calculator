@@ -10,7 +10,7 @@ class Expr_Builder
         Expr_Builder();
         virtual ~Expr_Builder();
         virtual void start_expression (void);
-        virtual void build_number (int n) = 0;
+        virtual void build_number (double n) = 0;
         virtual void build_add_operand (void) = 0;
         virtual void build_subtract_operand (void) = 0;
         virtual void build_modular_operand (void) = 0;

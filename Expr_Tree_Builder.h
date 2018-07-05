@@ -3,7 +3,8 @@
 
 #include "Expr_Builder.h"
 #include "Expr_Tree.h"
-#include "Stack.h"
+#include <stack>
+#include <list>
 #include "Div_Expr_Node.h"
 #include "Mult_Expr_Node.h"
 #include "Mod_Expr_Node.h"
@@ -18,7 +19,8 @@ class Expr_Tree_Builder : public Expr_Builder
         Expr_Tree_Builder();
         virtual ~Expr_Tree_Builder();
         virtual void start_expression();
-        virtual void build_number(int n);
+		virtual void finish_expression();
+        virtual void build_number(double n);
         virtual void build_add_operand();
         virtual void build_division_operand();
         virtual void build_multiplication_operand();
@@ -32,8 +34,8 @@ class Expr_Tree_Builder : public Expr_Builder
         Expr_Node *root;
         Expr_Node *temp;
         Expr_Node *tempRoot;
-        Stack<Expr_Node*> o_;
-        Stack<Expr_Node*> n_;
+        std::stack<Expr_Node*> o_;
+		std::list<Expr_Node*> n_;
 };
 
 #endif // EXPR_TREE_BUILDER_H

@@ -6,6 +6,7 @@
 #include "Expr_Builder.h"
 #include "Expr_Tree_Builder.h"
 #include "Eval_Expr_Tree.h"
+#include "Stack.h"
 
 
 //parse, call builder
@@ -46,7 +47,7 @@ bool parse_expr(const std::string &infix, Expr_Builder &b)
         }
         else
         {
-            b.build_number(std::stoi(token));
+            b.build_number(std::stod(token));
         }
     }
     Eval_Expr_Tree eval;
@@ -62,6 +63,15 @@ int main()
 	// get input from STDIN concrete factory
 	bool running = true;
 	char userInput[1000];
+	Expr_Tree_Builder *b = new Expr_Tree_Builder();
+	b->build_number(4);
+	b->build_add_operand();
+	b->build_number(3);
+	b->build_add_operand();
+	b->build_number(2);
+	b->build_add_operand();
+	b->build_number(1);
+
 	while(running)
     {
         std::cout << "Please give an expression (form of 1 / 2 + 4)\n";

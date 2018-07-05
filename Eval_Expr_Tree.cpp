@@ -21,10 +21,10 @@ void Eval_Expr_Tree::Visit_Div_Expr_Node(const Div_Expr_Node& node)
 {
     double numL, numR;
 	right_ = node.right_;
-	left_ = node.left_;
-
     right_->accept(*this);
     numR = this->result();
+
+	left_ = node.left_;
     left_->accept(*this);
     numL = this->result();
 
@@ -33,66 +33,68 @@ void Eval_Expr_Tree::Visit_Div_Expr_Node(const Div_Expr_Node& node)
 
 void Eval_Expr_Tree::Visit_Mult_Expr_Node(const Mult_Expr_Node& node)
 {
-    int numL, numR;
+    double numL, numR;
 	right_ = node.right_;
-	left_ = node.left_;
 
     right_->accept(*this);
     numR = this->result();
+
+	left_ = node.left_;
     left_->accept(*this);
     numL = this->result();
 
     result_ = numL * numR;
-    std::cout << "TEST";
 }
 
 void Eval_Expr_Tree::Visit_Mod_Expr_Node(const Mod_Expr_Node& node)
 {
     int numL, numR;
 	right_ = node.right_;
-	left_ = node.left_;
-
     right_->accept(*this);
     numR = this->result();
+
+	left_ = node.left_;
     left_->accept(*this);
     numL = this->result();
 
     result_ = numR % numL;
-    std::cout << "TEST";
 }
 
 void Eval_Expr_Tree::Visit_Sub_Expr_Node(const Sub_Expr_Node& node)
 {
-    int numL, numR;
+    double numL, numR;
 	right_ = node.right_;
-	left_ = node.left_;
-
     right_->accept(*this);
     numR = this->result();
+
+	left_ = node.left_;
     left_->accept(*this);
     numL = this->result();
 
-    result_ = numR - numL;
-    std::cout << "TEST";
+    result_ = numL - numR;
 }
 
 void Eval_Expr_Tree::Visit_Add_Expr_Node(const Add_Expr_Node& node)
 {
-    int numL, numR;
+    double numL, numR;
 	right_ = node.right_;
-	left_ = node.left_;
-
     right_->accept(*this);
     numR = this->result();
-    left_->accept(*this);
+
+	left_ = node.left_;
+	if (left_ != nullptr)
+		left_->accept(*this);
     numL = this->result();
 
     result_ = numL + numR;
-    std::cout << "TEST";
 }
 
 void Eval_Expr_Tree::Visit_Number_Node( Number_Node& node)
 {
     result_ = node.getVal();
+	if (node.right_ != nullptr)
+	{
+		node.right_->left_ = new Number_Node(node.getVal());
+		node.right_->accept(*this);
+	}
 }
-

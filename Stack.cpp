@@ -1,10 +1,3 @@
-// $Id: Stack.cpp 827 2011-02-07 14:20:53Z hillj $
-
-// Honor Pledge:
-//
-// I pledge that I have neither given nor received any help
-// on this assignment.
-
 //
 // Stack, default constructor
 //
@@ -19,9 +12,6 @@ Stack <T>::Stack ()
 
 //
 // Stack, copy constructor
-//
-// Lincoln, it is enough if you initialize the memeber variables at once in the bmi section. You don't have to do something
-// again in the body
 // initialized just in the member variables
 template <typename T>
 Stack <T>::Stack (const Stack & stack)
@@ -35,10 +25,6 @@ Stack <T>::Stack (const Stack & stack)
 //
 // ~Stack
 //
-// Lincoln, There is no need to manually call a destructor on a member
-// variable. All destructors of an object are called automatically as
-// part of the destruction process.
-// removed call
 template <typename T>
 Stack <T>::~Stack (void)
 {
@@ -48,8 +34,6 @@ Stack <T>::~Stack (void)
 //
 // push, resize just in case we exceed default max size, add to the top of the stack
 //
-// Lincoln, you might need to resize the array if required.
-// added resizing, didn't add condition for default max_size so this won't break if it changes
 template <typename T>
 void Stack <T>::push (T element)
 {
@@ -79,8 +63,7 @@ T Stack <T>::pop (void)
 template <typename T>
 const Stack <T> & Stack <T>::operator = (const Stack & rhs)
 {
-// Lincoln, you are not checking for self-assignment correctly.
-// checked for self-assignment
+// check for self-assignment
 	if(this->data_s == rhs.data_s)
 	{
 		return *this;

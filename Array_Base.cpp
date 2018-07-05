@@ -7,6 +7,7 @@
 
 #include "Array_Base.h"
 #include <stdexcept>         // for std::out_of_bounds exception
+#include <vector>
 
 #define DEFAULT 100
 //
@@ -108,6 +109,11 @@ T Array_Base <T>::get (size_t index) const
 {
 	if(index < this->cur_size_B)
 	{
+		std::vector<T> test;
+		for (int i = 0; i < cur_size_B; i++)
+		{
+			test.push_back(this->data_B[i]);
+		}
 		return  this->data_B[index];
 	}
 	else
