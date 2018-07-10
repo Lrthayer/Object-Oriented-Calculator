@@ -1,7 +1,6 @@
 #ifndef EVAL_EXPR_TREE_H
 #define EVAL_EXPR_TREE_H
 
-#include "Stack.h"
 #include "Expr_Node_Visitor.h"
 #include "Add_Expr_Node.h"
 #include "Sub_Expr_Node.h"
@@ -26,7 +25,6 @@ class Eval_Expr_Tree : public Expr_Node_Visitor
         virtual void Visit_Number_Node( Number_Node &node);
         double result();
 
-    protected:
     private:
         double result_;
         Expr_Node *left_;

@@ -20,27 +20,84 @@ void Expr_Tree_Builder::start_expression(void)
     this->tree_ = new Expr_Tree();
 }
 
-void Expr_Tree_Builder::finish_expression()
+void Expr_Tree_Builder::build_expression(Expr_Node *lastNode)
 {
-	while (!n_.empty() && !o_.empty())
+
+	while (n_.size() != 0)
 	{
-		temp = o_.top();
-		o_.pop();
-		temp->right_ = n_.back();
-		n_.pop_back();
-		temp->left_ = n_.back();
-		n_.pop_back();
-		n_.push_front(temp);
+		if (n_.size() < 2)
+			break;
+		Binary_Expr_Node * expression = nullptr;
+		if (o_.empty())
+			expression = (Binary_Expr_Node*)lastNode;
+		else
+		{
+			expression = (Binary_Expr_Node*)o_.top();
+			o_.pop();
+		}
+
+		/*if (o_.size() > 0)
+		{
+			expression->right_ = this->o_.top();
+			this->o_.pop();
+		}
+		else
+		{*/
+			expression->right_ = (this->n_.front());
+			this->n_.pop_front();
+		//}
+
+		if (n_.size() == o_.size())
+		{
+			//n_.push_front(tree_->getTree());
+		}
+
+		expression->left_ = (this->n_.front());
+		this->n_.pop_front();
+
+		// Comment: The accept method should be called from the visitor and not the builder.
+		/*
+		* I removed the statement "expression->accept(evaluate_tree);" as it did not belong in the builder.
+		*/
+
+
+		//we need to make sure the current tree doesn't have a case where a higher prec ended up being the root of a node
+		//make sure left isn't a number
+		if (!static_cast<Number_Node*>(expression->left_))
+		{
+			std::cout << "!";
+
+			if (static_cast<Binary_Expr_Node*>(expression->left_) && expression->getPrec() > expression->left_->getPrec())
+			{
+				//temp store current expression
+				Expr_Node *t = expression;
+
+				//remove old root's left side, essentially deparenting it
+				t->left_ = nullptr;
+
+				//grap old leaf's right leaf
+				Expr_Node *t2 = expression->left_->right_;
+
+				//set that the old root's left side
+				t->left_ = t2;
+
+				//push the bottom node up
+				expression = (Binary_Expr_Node*)expression->left_;
+
+				expression->left_ = t;
+			}
+		}
+		
+		this->n_.push_front(expression);
+		tree_->setTree(expression);
 	}
-	tree_->setTree(n_.back());
-	n_.pop_back();
-	//return tree_->getTree();
-	
 }
 
 //take all the operators and numbers that have been set according to precedence and build the tree
 Expr_Node* Expr_Tree_Builder::get_expression(void)
 {
+	return this->tree_->getTree();
+	/*
 	while (!n_.empty() && !o_.empty())
 	{
 		temp = o_.top();
@@ -55,6 +112,7 @@ Expr_Node* Expr_Tree_Builder::get_expression(void)
 	n_.pop_back();
 	tree_->setTree(t);
 	return tree_->getTree();
+	*/
 /*
     bool buildingTree = true;
     while(buildingTree)
@@ -128,7 +186,7 @@ void Expr_Tree_Builder::build_add_operand(void)
 void Expr_Tree_Builder::build_number(double n)
 {
     Number_Node *nNode = new Number_Node(n);
-    n_.push_back(nNode);
+    n_.push_front(nNode);
 
 }
 
@@ -143,8 +201,17 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
             o_.push(node);
             checking = false;
         }
+		else if (node->getPrec() > o_.top()->getPrec())
+		{
+			o_.push(node);
+			checking = false;
+		}
         else
         {
+			checking = false;
+			build_expression(node);
+			o_.push(node);
+			/*
 			std::vector<Expr_Node*> moving;
             while ( !o_.empty() && node->getPrec() > o_.top()->getPrec())
             {
@@ -174,6 +241,7 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
 				o_.push(moving.at(i));
 			}
 			checking = false;
+			*/
         }
     }
 }

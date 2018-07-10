@@ -13,9 +13,6 @@ class Binary_Expr_Node : public Expr_Node
         virtual ~Binary_Expr_Node();
         virtual void accept(Expr_Node_Visitor &v)= 0;
         virtual int eval();
-    protected:
-
-    private:
 };
 
 #endif // BINARY_EXPR_NODE_H

@@ -13,11 +13,6 @@ Div_Expr_Node::~Div_Expr_Node()
 
 }
 
-int Div_Expr_Node::eval(int n1, int n2)
-{
-    return n1 / n2;
-}
-
 //if this accepts call eval on eval tree
 void Div_Expr_Node::accept(Expr_Node_Visitor& v)
 {

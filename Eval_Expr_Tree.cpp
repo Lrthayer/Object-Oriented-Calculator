@@ -28,7 +28,7 @@ void Eval_Expr_Tree::Visit_Div_Expr_Node(const Div_Expr_Node& node)
     left_->accept(*this);
     numL = this->result();
 
-    result_ = numR / numL;
+    result_ = numL / numR;
 }
 
 void Eval_Expr_Tree::Visit_Mult_Expr_Node(const Mult_Expr_Node& node)

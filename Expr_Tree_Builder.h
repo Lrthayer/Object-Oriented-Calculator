@@ -19,7 +19,7 @@ class Expr_Tree_Builder : public Expr_Builder
         Expr_Tree_Builder();
         virtual ~Expr_Tree_Builder();
         virtual void start_expression();
-		virtual void finish_expression();
+		virtual void build_expression(Expr_Node *lastNode = nullptr);
         virtual void build_number(double n);
         virtual void build_add_operand();
         virtual void build_division_operand();
@@ -33,7 +33,6 @@ class Expr_Tree_Builder : public Expr_Builder
         Expr_Tree *tree_;
         Expr_Node *root;
         Expr_Node *temp;
-        Expr_Node *tempRoot;
         std::stack<Expr_Node*> o_;
 		std::list<Expr_Node*> n_;
 };
