@@ -1,5 +1,4 @@
-# Enable C++ support
-language: cpp
+language: c++
 # Compiler selection
 compiler:
   - clang
