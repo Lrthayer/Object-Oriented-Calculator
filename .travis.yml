@@ -4,7 +4,4 @@ compiler:
   - clang
   - gcc
 # Build steps
-script:
-  - mkdir build
-  - cd build
-./configure && make && make test
+script: make
