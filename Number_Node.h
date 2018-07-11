@@ -12,7 +12,7 @@ class Number_Node : public Expr_Node
         virtual ~Number_Node();
         virtual void accept (Expr_Node_Visitor &v);
         double getVal();
-    protected:
+
     private:
         double val;
 };

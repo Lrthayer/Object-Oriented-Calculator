@@ -9,11 +9,11 @@ class Expr_Node
         Expr_Node();
         virtual ~Expr_Node();
         virtual void accept(Expr_Node_Visitor &v) = 0;
-        Expr_Node * right_;
-        Expr_Node * left_;
         virtual int getPrec();
+		virtual void setPrec(int);
 
-    private:
+	protected:
+		int prec;
 };
 
 #endif // EXPR_NODE_H

@@ -9,12 +9,7 @@ class Mult_Expr_Node : public Binary_Expr_Node
     public:
         Mult_Expr_Node();
         virtual ~Mult_Expr_Node();
-
 		virtual void accept (Expr_Node_Visitor &v);
-        virtual int getPrec();
-
-    private:
-        int prec;
 };
 
 #endif // MULT_EXPR_NODE_H

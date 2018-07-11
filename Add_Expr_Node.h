@@ -10,10 +10,6 @@ class Add_Expr_Node : public Binary_Expr_Node
         Add_Expr_Node();
         virtual ~Add_Expr_Node();
         virtual void accept (Expr_Node_Visitor &v);
-        virtual int getPrec();
-
-    private:
-        int prec;
 };
 
 #endif // ADD_EXPR_NODE_H

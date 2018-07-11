@@ -12,5 +12,10 @@ Expr_Node::~Expr_Node()
 
 int Expr_Node::getPrec()
 {
-	return this->getPrec();
+	return this->prec;
+}
+
+void Expr_Node::setPrec(int newPrec)
+{
+	this->prec = newPrec;
 }

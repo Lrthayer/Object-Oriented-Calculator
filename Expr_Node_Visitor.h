@@ -16,11 +16,11 @@ class Expr_Node_Visitor
         virtual ~Expr_Node_Visitor();
 
         //Methods for visiting concrete nodes
-        virtual void Visit_Add_Expr_Node(const Add_Expr_Node &node) = 0;
-        virtual void Visit_Sub_Expr_Node(const Sub_Expr_Node &node) = 0;
-        virtual void Visit_Div_Expr_Node(const Div_Expr_Node &node) = 0;
-        virtual void Visit_Mult_Expr_Node(const Mult_Expr_Node &node) = 0;
-        virtual void Visit_Mod_Expr_Node(const Mod_Expr_Node &node) = 0;
+        virtual void Visit_Add_Expr_Node(Add_Expr_Node &node) = 0;
+        virtual void Visit_Sub_Expr_Node(Sub_Expr_Node &node) = 0;
+        virtual void Visit_Div_Expr_Node(Div_Expr_Node &node) = 0;
+        virtual void Visit_Mult_Expr_Node(Mult_Expr_Node &node) = 0;
+        virtual void Visit_Mod_Expr_Node(Mod_Expr_Node &node) = 0;
         virtual void Visit_Number_Node( Number_Node &node) = 0;
 
     private:

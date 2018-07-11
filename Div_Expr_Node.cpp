@@ -2,10 +2,9 @@
 #include "Div_Expr_Node.h"
 
 Div_Expr_Node::Div_Expr_Node()
-    :
-    prec(1)
 {
-
+	//set protected int from Expr_Node prec
+	this->prec = 1;
 }
 
 Div_Expr_Node::~Div_Expr_Node()
@@ -17,10 +16,5 @@ Div_Expr_Node::~Div_Expr_Node()
 void Div_Expr_Node::accept(Expr_Node_Visitor& v)
 {
     v.Visit_Div_Expr_Node(*this);
-}
-
-int Div_Expr_Node::getPrec()
-{
-    return prec;
 }
 

@@ -8,11 +8,9 @@
 #include "Expr_Builder.h"
 #include "Expr_Tree_Builder.h"
 #include "Eval_Expr_Tree.h"
-#include "Stack.h"
-
 
 //parse, call builder
-bool parse_expr(const std::string &infix)
+void parse_expr(const std::string &infix)
 {
     std::istringstream input(infix);
     std::string token;
@@ -44,6 +42,14 @@ bool parse_expr(const std::string &infix)
         {
             b.build_modular_operand();
         }
+		else if (token == "(")
+		{
+			b.build_open_parentheses();
+		}
+		else if (token == ")")
+		{
+			b.build_close_parenteses();
+		}
         else if(token == "")
         {
             std::cout << "space";
@@ -53,13 +59,12 @@ bool parse_expr(const std::string &infix)
             b.build_number(std::stod(token));
         }
     }
+	//finish expression
 	b.build_expression();
     Eval_Expr_Tree eval;
     Expr_Node *evalTree = b.get_expression();
     evalTree->accept(eval);
     std::cout << "\n" << eval.result() << "\n";
-
-    return true;
 }
 
 int main()
@@ -67,7 +72,7 @@ int main()
 	// get input from STDIN concrete factory
 	bool running = true;
 	std::string userInput;
-
+	parse_expr("( 4 * ( 2 - 2 ) ) + 10 * 2 - 25");
 	while(running)
     {
 		bool keepGoing = true;

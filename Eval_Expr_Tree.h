@@ -17,18 +17,16 @@ class Eval_Expr_Tree : public Expr_Node_Visitor
         virtual ~Eval_Expr_Tree();
 
         //Methods for visiting concrete nodes, visit left node, visit right node, then perform eval
-        virtual void Visit_Add_Expr_Node(const Add_Expr_Node &node);
-        virtual void Visit_Sub_Expr_Node(const Sub_Expr_Node &node);
-        virtual void Visit_Mod_Expr_Node(const Mod_Expr_Node &node);
-        virtual void Visit_Mult_Expr_Node(const Mult_Expr_Node &node);
-        virtual void Visit_Div_Expr_Node(const Div_Expr_Node &node);
+        virtual void Visit_Add_Expr_Node(Add_Expr_Node &node);
+        virtual void Visit_Sub_Expr_Node(Sub_Expr_Node &node);
+        virtual void Visit_Mod_Expr_Node(Mod_Expr_Node &node);
+        virtual void Visit_Mult_Expr_Node(Mult_Expr_Node &node);
+        virtual void Visit_Div_Expr_Node(Div_Expr_Node &node);
         virtual void Visit_Number_Node( Number_Node &node);
         double result();
 
     private:
         double result_;
-        Expr_Node *left_;
-        Expr_Node *right_;
 
 };
 

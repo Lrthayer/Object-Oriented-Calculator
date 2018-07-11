@@ -10,10 +10,6 @@ class Sub_Expr_Node : public Binary_Expr_Node
         Sub_Expr_Node();
         virtual ~Sub_Expr_Node();
         virtual void accept (Expr_Node_Visitor &v);
-        virtual int getPrec();
-
-    private:
-        int prec;
 
 };
 

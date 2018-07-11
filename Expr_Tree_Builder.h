@@ -11,6 +11,8 @@
 #include "Add_Expr_Node.h"
 #include "Sub_Expr_Node.h"
 #include "Number_Node.h"
+#include "Open_Parentheses.h"
+#include "Close_Parentheses.h"
 
 //buildes Expr_Tree
 class Expr_Tree_Builder : public Expr_Builder
@@ -19,22 +21,25 @@ class Expr_Tree_Builder : public Expr_Builder
         Expr_Tree_Builder();
         virtual ~Expr_Tree_Builder();
         virtual void start_expression();
-		virtual void build_expression(Expr_Node *lastNode = nullptr);
+		virtual void build_expression();
         virtual void build_number(double n);
         virtual void build_add_operand();
         virtual void build_division_operand();
         virtual void build_multiplication_operand();
         virtual void build_modular_operand();
         virtual void build_subtract_operand();
+		virtual void build_open_parentheses();
+		virtual void build_close_parenteses();
+
         void checkPrec(Expr_Node *node);
         Expr_Node *get_expression();
 
     private:
         Expr_Tree *tree_;
-        Expr_Node *root;
-        Expr_Node *temp;
         std::stack<Expr_Node*> o_;
 		std::list<Expr_Node*> n_;
+
+		int inParentheses = 0;
 };
 
 #endif // EXPR_TREE_BUILDER_H
