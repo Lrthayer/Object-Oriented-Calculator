@@ -4,4 +4,4 @@ compiler:
   - clang
   - gcc
 # Build steps
-script: make
+script: make clean && make
