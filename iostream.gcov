@@ -1,11 +1,11 @@
-        -:    0:Source:/usr/include/c++/5/iostream
-        -:    0:Graph:tmp.gcno
-        -:    0:Data:tmp.gcda
-        -:    0:Runs:1
-        -:    0:Programs:1
+        -:    0:Source:/usr/lib/gcc/x86_64-pc-linux-gnu/6.4.0/include/g++-v6/iostream
+        -:    0:Graph:main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    0:Programs:0
         -:    1:// Standard iostream objects -*- C++ -*-
         -:    2:
-        -:    3:// Copyright (C) 1997-2015 Free Software Foundation, Inc.
+        -:    3:// Copyright (C) 1997-2016 Free Software Foundation, Inc.
         -:    4://
         -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
         -:    6:// software; you can redistribute it and/or modify it under the
@@ -76,7 +76,10 @@
         -:   71:  //@}
         -:   72:
         -:   73:  // For construction of filebuffers for cout, cin, cerr, clog et. al.
-        1:   74:  static ios_base::Init __ioinit;
+    #####:   74:  static ios_base::Init __ioinit;
+    $$$$$:   74-block  0
+call    0 never executed
+call    1 never executed
         -:   75:
         -:   76:_GLIBCXX_END_NAMESPACE_VERSION
         -:   77:} // namespace
