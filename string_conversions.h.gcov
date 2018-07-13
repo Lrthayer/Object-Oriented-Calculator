@@ -1,11 +1,8 @@
-        -:    0:Source:/usr/lib/gcc/x86_64-pc-linux-gnu/6.4.0/include/g++-v6/ext/string_conversions.h
-        -:    0:Graph:main.gcno
-        -:    0:Data:-
-        -:    0:Runs:0
-        -:    0:Programs:0
+        -:    0:Source:/usr/include/c++/5/ext/string_conversions.h
+        -:    0:Programs:1
         -:    1:// String Conversions -*- C++ -*-
         -:    2:
-        -:    3:// Copyright (C) 2008-2016 Free Software Foundation, Inc.
+        -:    3:// Copyright (C) 2008-2015 Free Software Foundation, Inc.
         -:    4://
         -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
         -:    6:// software; you can redistribute it and/or modify it under the
@@ -56,103 +53,57 @@
         -:   51:  template<typename _TRet, typename _Ret = _TRet, typename _CharT,
         -:   52:	   typename... _Base>
         -:   53:    _Ret
-function _ZN9__gnu_cxx6__stoaIddcJEEET0_PFT_PKT1_PPS3_DpT2_EPKcS5_PmS9_ called 0 returned 0% blocks executed 0%
-    #####:   54:    __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
-    $$$$$:   54-block  0
+        8:   54:    __stoa(_TRet (*__convf) (const _CharT*, _CharT**, _Base...),
         -:   55:	   const char* __name, const _CharT* __str, std::size_t* __idx,
         -:   56:	   _Base... __base)
         -:   57:    {
         -:   58:      _Ret __ret;
         -:   59:
         -:   60:      _CharT* __endptr;
-        -:   61:
-        -:   62:      struct _Save_errno {
-function _ZZN9__gnu_cxx6__stoaIddcJEEET0_PFT_PKT1_PPS3_DpT2_EPKcS5_PmS9_EN11_Save_errnoC2Ev called 0 returned 0% blocks executed 0%
-    #####:   63:	_Save_errno() : _M_errno(errno) { errno = 0; }
-    $$$$$:   63-block  0
-    $$$$$:   63-block  1
-call    0 never executed
-call    1 never executed
-function _ZZN9__gnu_cxx6__stoaIddcJEEET0_PFT_PKT1_PPS3_DpT2_EPKcS5_PmS9_EN11_Save_errnoD2Ev called 0 returned 0% blocks executed 0%
-    #####:   64:	~_Save_errno() { if (errno == 0) errno = _M_errno; }
-    $$$$$:   64-block  0
-    $$$$$:   64-block  1
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   64-block  2
-call    3 never executed
-        -:   65:	int _M_errno;
-    #####:   66:      } const __save_errno;
-    $$$$$:   66-block  0
-call    0 never executed
-    $$$$$:   66-block  1
-call    1 never executed
-    %%%%%:   66-block  2
-call    2 never executed
-        -:   67:
-    #####:   68:      const _TRet __tmp = __convf(__str, &__endptr, __base...);
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-        -:   69:
-    #####:   70:      if (__endptr == __str)
-    $$$$$:   70-block  0
-branch  0 never executed
-branch  1 never executed
-    #####:   71:	std::__throw_invalid_argument(__name);
-    $$$$$:   71-block  0
-call    0 never executed
-    #####:   72:      else if (errno == ERANGE
-    $$$$$:   72-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-        -:   73:	       || (std::__are_same<_Ret, int>::__value
-        -:   74:		   && (__tmp < __numeric_traits<int>::__min
-        -:   75:		       || __tmp > __numeric_traits<int>::__max)))
-    #####:   76:	std::__throw_out_of_range(__name);
-    $$$$$:   76-block  0
-call    0 never executed
-        -:   77:      else
-    #####:   78:	__ret = __tmp;
+        8:   61:      errno = 0;
+        8:   62:      const _TRet __tmp = __convf(__str, &__endptr, __base...);
+        -:   63:
+        8:   64:      if (__endptr == __str)
+    #####:   65:	std::__throw_invalid_argument(__name);
+        8:   66:      else if (errno == ERANGE
+        -:   67:	       || (std::__are_same<_Ret, int>::__value
+        -:   68:		   && (__tmp < __numeric_traits<int>::__min
+        -:   69:		       || __tmp > __numeric_traits<int>::__max)))
+    #####:   70:	std::__throw_out_of_range(__name);
+        -:   71:      else
+        8:   72:	__ret = __tmp;
+        -:   73:
+        8:   74:      if (__idx)
+    #####:   75:	*__idx = __endptr - __str;
+        -:   76:
+        8:   77:      return __ret;
+        -:   78:    }
         -:   79:
-    #####:   80:      if (__idx)
-    $$$$$:   80-block  0
-branch  0 never executed
-branch  1 never executed
-    #####:   81:	*__idx = __endptr - __str;
-    $$$$$:   81-block  0
-        -:   82:
-    #####:   83:      return __ret;
-    $$$$$:   83-block  0
-        -:   84:    }
-        -:   85:
-        -:   86:  // Helper for the to_string / to_wstring functions.
-        -:   87:  template<typename _String, typename _CharT = typename _String::value_type>
-        -:   88:    _String
-        -:   89:    __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
-        -:   90:				 __builtin_va_list), std::size_t __n,
-        -:   91:		 const _CharT* __fmt, ...)
-        -:   92:    {
-        -:   93:      // XXX Eventually the result will be constructed in place in
-        -:   94:      // the C++0x string, likely with the help of internal hooks.
-        -:   95:      _CharT* __s = static_cast<_CharT*>(__builtin_alloca(sizeof(_CharT)
-        -:   96:							  * __n));
-        -:   97:
-        -:   98:      __builtin_va_list __args;
-        -:   99:      __builtin_va_start(__args, __fmt);
-        -:  100:
-        -:  101:      const int __len = __convf(__s, __n, __fmt, __args);
-        -:  102:
-        -:  103:      __builtin_va_end(__args);
+        -:   80:  // Helper for the to_string / to_wstring functions.
+        -:   81:  template<typename _String, typename _CharT = typename _String::value_type>
+        -:   82:    _String
+        -:   83:    __to_xstring(int (*__convf) (_CharT*, std::size_t, const _CharT*,
+        -:   84:				 __builtin_va_list), std::size_t __n,
+        -:   85:		 const _CharT* __fmt, ...)
+        -:   86:    {
+        -:   87:      // XXX Eventually the result will be constructed in place in
+        -:   88:      // the C++0x string, likely with the help of internal hooks.
+        -:   89:      _CharT* __s = static_cast<_CharT*>(__builtin_alloca(sizeof(_CharT)
+        -:   90:							  * __n));
+        -:   91:
+        -:   92:      __builtin_va_list __args;
+        -:   93:      __builtin_va_start(__args, __fmt);
+        -:   94:
+        -:   95:      const int __len = __convf(__s, __n, __fmt, __args);
+        -:   96:
+        -:   97:      __builtin_va_end(__args);
+        -:   98:
+        -:   99:      return _String(__s, __s + __len);
+        -:  100:    }
+        -:  101:
+        -:  102:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  103:} // namespace
         -:  104:
-        -:  105:      return _String(__s, __s + __len);
-        -:  106:    }
-        -:  107:
-        -:  108:_GLIBCXX_END_NAMESPACE_VERSION
-        -:  109:} // namespace
-        -:  110:
-        -:  111:#endif // C++11
-        -:  112:
-        -:  113:#endif // _STRING_CONVERSIONS_H
+        -:  105:#endif // C++11
+        -:  106:
+        -:  107:#endif // _STRING_CONVERSIONS_H

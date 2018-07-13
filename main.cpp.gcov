@@ -1,8 +1,5 @@
-        -:    0:Source:main.cpp
-        -:    0:Graph:main.gcno
-        -:    0:Data:-
-        -:    0:Runs:0
-        -:    0:Programs:0
+        -:    0:Source:source/main.cpp
+        -:    0:Programs:1
         -:    1:#include <iostream>
         -:    2:#include <string>
         -:    3:#include <sstream>
@@ -15,348 +12,86 @@
         -:   10:#include "Eval_Expr_Tree.h"
         -:   11:
         -:   12://parse, call builder
-function _Z10parse_exprRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
-    #####:   13:void parse_expr(const std::string &infix)
-    $$$$$:   13-block  0
+        2:   13:void parse_expr(const std::string &infix)
         -:   14:{
-    #####:   15:    std::istringstream input(infix);
-    $$$$$:   15-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-call    3 never executed
-    %%%%%:   15-block  1
-call    4 never executed
-    #####:   16:    std::string token;
-    $$$$$:   16-block  0
-call    0 never executed
-call    1 never executed
-    %%%%%:   16-block  1
-call    2 never executed
-    #####:   17:	Expr_Tree_Builder b;
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-call    3 never executed
-    %%%%%:   17-block  0
-call    4 never executed
-    #####:   18:    b.start_expression();
-    $$$$$:   18-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
+        4:   15:    std::istringstream input(infix);
+        4:   16:    std::string token;
+        4:   17:	Expr_Tree_Builder b;
+        2:   18:    b.start_expression();
         -:   19:
-    #####:   20:    while(!input.eof())
-    $$$$$:   20-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   20-block  1
-branch  3 never executed
-branch  4 never executed
-    $$$$$:   20-block  2
+       38:   20:    while(!input.eof())
         -:   21:    {
-    #####:   22:		if (input.eof())
-    $$$$$:   22-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   22-block  1
-branch  3 never executed
-branch  4 never executed
+       18:   22:		if (input.eof())
     #####:   23:			break;
-    $$$$$:   23-block  0
-    #####:   24:        input >> token;
-    $$$$$:   24-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    #####:   25:        if(token == "+")
-    $$$$$:   25-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   25-block  1
-branch  3 never executed
-branch  4 never executed
+       18:   24:        input >> token;
+       18:   25:        if(token == "+")
         -:   26:        {
-    #####:   27:            b.build_add_operand();
-    $$$$$:   27-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   27-block  1
+        2:   27:            b.build_add_operand();
         -:   28:        }
-    #####:   29:        else if(token == "-")
-    $$$$$:   29-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   29-block  1
-branch  3 never executed
-branch  4 never executed
+       16:   29:        else if(token == "-")
         -:   30:        {
-    #####:   31:            b.build_subtract_operand();
-    $$$$$:   31-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   31-block  1
+        2:   31:            b.build_subtract_operand();
         -:   32:        }
-    #####:   33:        else if(token == "*")
-    $$$$$:   33-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   33-block  1
-branch  3 never executed
-branch  4 never executed
+       14:   33:        else if(token == "*")
         -:   34:        {
-    #####:   35:            b.build_multiplication_operand();
-    $$$$$:   35-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   35-block  1
+        2:   35:            b.build_multiplication_operand();
         -:   36:        }
-    #####:   37:        else if(token == "/")
-    $$$$$:   37-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   37-block  1
-branch  3 never executed
-branch  4 never executed
+       12:   37:        else if(token == "/")
         -:   38:        {
     #####:   39:            b.build_division_operand();
-    $$$$$:   39-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   39-block  1
         -:   40:        }
-    #####:   41:        else if(token == "%")
-    $$$$$:   41-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   41-block  1
-branch  3 never executed
-branch  4 never executed
+       12:   41:        else if(token == "%")
         -:   42:        {
     #####:   43:            b.build_modular_operand();
-    $$$$$:   43-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   43-block  1
         -:   44:        }
-    #####:   45:		else if (token == "(")
-    $$$$$:   45-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   45-block  1
-branch  3 never executed
-branch  4 never executed
+       12:   45:		else if (token == "(")
         -:   46:		{
-    #####:   47:			b.build_open_parentheses();
-    $$$$$:   47-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   47-block  1
+        2:   47:			b.build_open_parentheses();
         -:   48:		}
-    #####:   49:		else if (token == ")")
-    $$$$$:   49-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   49-block  1
-branch  3 never executed
-branch  4 never executed
+       10:   49:		else if (token == ")")
         -:   50:		{
-    #####:   51:			b.build_close_parenteses();
-    $$$$$:   51-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   51-block  1
+        2:   51:			b.build_close_parenteses();
         -:   52:		}
-    #####:   53:        else if(token == "")
-    $$$$$:   53-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   53-block  1
-branch  3 never executed
-branch  4 never executed
+        8:   53:        else if(token == "")
         -:   54:        {
     #####:   55:            std::cout << "space";
-    $$$$$:   55-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   55-block  1
         -:   56:        }
         -:   57:        else
         -:   58:        {
-    #####:   59:            b.build_number(std::stod(token));
-    $$$$$:   59-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   59-block  1
-call    3 never executed
-branch  4 never executed
-branch  5 never executed
+        8:   59:            b.build_number(std::stod(token));
         -:   60:        }
         -:   61:    }
         -:   62:	//finish expression
-    #####:   63:	b.build_expression();
-    $$$$$:   63-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    #####:   64:    Eval_Expr_Tree eval;
-    $$$$$:   64-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   64-block  1
-call    3 never executed
-    %%%%%:   64-block  2
-call    4 never executed
-    #####:   65:    Expr_Node *evalTree = b.get_expression();
-    $$$$$:   65-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    #####:   66:    evalTree->accept(eval);
-    $$$$$:   66-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    #####:   67:    std::cout << "\n" << eval.result() << "\n";
-    $$$$$:   67-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   67-block  1
-call    3 never executed
-branch  4 never executed
-branch  5 never executed
-    $$$$$:   67-block  2
-call    6 never executed
-branch  7 never executed
-branch  8 never executed
-    $$$$$:   67-block  3
-call    9 never executed
-branch 10 never executed
-branch 11 never executed
-    #####:   68:}
+        2:   63:	b.build_expression();
+        4:   64:    Eval_Expr_Tree eval;
+        2:   65:    Expr_Node *evalTree = b.get_expression();
+        2:   66:    evalTree->accept(eval);
+        2:   67:    std::cout << "\n" << eval.result() << "\n";
+        2:   68:}
         -:   69:
-function main called 0 returned 0% blocks executed 0%
-    #####:   70:int main()
-    $$$$$:   70-block  0
+        1:   70:int main()
         -:   71:{
         -:   72:	// get input from STDIN concrete factory
-    #####:   73:	bool running = true;
-    #####:   74:	std::string userInput;
-    $$$$$:   74-block  0
-call    0 never executed
-    $$$$$:   74-block  1
-call    1 never executed
-    $$$$$:   74-block  2
-    %%%%%:   74-block  3
-call    2 never executed
-    #####:   75:	parse_expr("( 4 * ( 2 - 2 ) ) + 10 * 2 - 25");
-call    0 never executed
-call    1 never executed
-branch  2 never executed
-branch  3 never executed
-    $$$$$:   75-block  0
-call    4 never executed
-branch  5 never executed
-branch  6 never executed
-    $$$$$:   75-block  1
-call    7 never executed
-call    8 never executed
-    %%%%%:   75-block  2
-call    9 never executed
-    %%%%%:   75-block  3
-call   10 never executed
-    #####:   76:	while(running)
-    $$$$$:   76-block  0
-branch  0 never executed
-branch  1 never executed
-    $$$$$:   76-block  1
+        1:   73:	bool running = true;
+        2:   74:	std::string userInput;
+        1:   75:	parse_expr("( 4 * ( 2 - 2 ) ) + 10 * 2 - 25");
+        1:   76:	while(running)
         -:   77:    {
-    #####:   78:		bool keepGoing = true;
-    $$$$$:   78-block  0
-    #####:   79:		while (keepGoing)
-    $$$$$:   79-block  0
-branch  0 never executed
-branch  1 never executed
-    $$$$$:   79-block  1
+        1:   78:		bool keepGoing = true;
+        3:   79:		while (keepGoing)
         -:   80:		{
-    #####:   81:			std::cout << "Please give an expression(form of 1 / 2 + 4)\n";
-    $$$$$:   81-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    #####:   82:			std::getline(std::cin, userInput);
-    $$$$$:   82-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
+        2:   81:			std::cout << "Please give an expression(form of 1 / 2 + 4)\n";
+        2:   82:			std::getline(std::cin, userInput);
         -:   83:
-    #####:   84:			if (userInput == "QUIT" || userInput == "quit")
-    $$$$$:   84-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   84-block  1
-branch  3 never executed
-branch  4 never executed
-    $$$$$:   84-block  2
-call    5 never executed
-branch  6 never executed
-branch  7 never executed
-    $$$$$:   84-block  3
-branch  8 never executed
-branch  9 never executed
-    $$$$$:   84-block  4
-    $$$$$:   84-block  5
-    $$$$$:   84-block  6
-branch 10 never executed
-branch 11 never executed
+        2:   84:			if (userInput == "QUIT" || userInput == "quit")
         -:   85:			{
-    #####:   86:				keepGoing = false;
-    #####:   87:				return 0;
-    $$$$$:   87-block  0
+        1:   86:				keepGoing = false;
+        1:   87:				return 0;
         -:   88:			}
         -:   89:
-    #####:   90:			parse_expr(userInput);
-    $$$$$:   90-block  0
-call    0 never executed
-branch  1 never executed
-branch  2 never executed
+        1:   90:			parse_expr(userInput);
         -:   91:		}
         -:   92:    }
     #####:   93:    return 0;
-    $$$$$:   93-block  0
-function _GLOBAL__sub_I__Z10parse_exprRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 0 returned 0% blocks executed 0%
-function _Z41__static_initialization_and_destruction_0ii called 0 returned 0% blocks executed 0%
-    #####:   94:}
-    $$$$$:   94-block  0
-    $$$$$:   94-block  1
-call    0 never executed
-    $$$$$:   94-block  2
-    $$$$$:   94-block  3
-branch  1 never executed
-branch  2 never executed
-    $$$$$:   94-block  4
-branch  3 never executed
-branch  4 never executed
+        3:   94:}
         -:   95:

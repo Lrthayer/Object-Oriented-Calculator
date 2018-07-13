@@ -1,27 +1,63 @@
-CC=g++ # define the compiler to use
-TARGET=calc # define the name of the executable
-SOURCES=main.cpp Add_Expr_Node.cpp Binary_Expr_Node.cpp Div_Expr_Node.cpp Eval_Expr_Tree.cpp Expr_Builder.cpp Expr_Node.cpp Expr_Node_Visitor.cpp Expr_Tree.cpp Expr_Tree_Builder.cpp Mod_Expr_Node.cpp Mult_Expr_Node.cpp Number_Node.cpp Sub_Expr_Node.cpp
-CFLAGS=
-LFLAGS=-fprofile-arcs -ftest-coverage
-
+#++ Compiler
+CXX := g++
+#
+#
+# Flags
+#
+#   Compiler
+CXXFLAGS +=-c -std=c++11 -fprofile-arcs -ftest-coverage
+#
+#   Linker
+LDFLAGS += -g --coverage
+#
+#   Library
+LIBFLAGS :=
+#
+#   Include
+INCLUDEFLAGS :=
+#
+#
+# Program name
+EXE := calc
+#
+#
+# Directories
+#
+#   Headers
+HEADERDIR := ./headers
+#
+#   Sources
+SRCDIR := ./source
+#
+#   Objects
+OBJDIR := obj
+#
+#   Binary
+BINDIR := bin
+#
+#
 ################################################################################
-### DO NOT EDIT THE FOLLOWING LINES ############################################
 
-# define list of objects
-OBJSC=$(SOURCES:.c=.o)
-OBJS=$(OBJSC:.cpp=.o)
+HEADERS := $(wildcard $(HEADERDIR)/*.h)
+SRCS := $(wildcard $(SRCDIR)/*.cpp)
+OBJS := $(subst $(SRCDIR)/,$(OBJDIR)/,$(SRCS:.cpp=.o))
 
-# the target is obtained linking all .o files
-all: $(SOURCES) $(TARGET)
+CXXFLAGS += $(INCLUDEFLAGS) -I$(HEADERDIR)
+LDFLAGS += $(LIBFLAGS)
 
-$(TARGET): $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+.PHONY: all clean distclean
 
-purge: clean
-	rm -f $(TARGET)
+all: $(BINDIR)/$(EXE)
+
+$(BINDIR)/$(EXE): $(OBJS)
+	mkdir -p $(BINDIR)
+	$(CXX) $(LDFLAGS) $? -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJDIR)/*.o $(BINDIR)/$(EXE)
 
-################################################################################
-################################################################################
+distclean: clean
