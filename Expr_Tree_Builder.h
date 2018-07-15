@@ -20,6 +20,7 @@ class Expr_Tree_Builder : public Expr_Builder
         virtual ~Expr_Tree_Builder();
         virtual void start_expression();
 		virtual void build_expression();
+		virtual void finish_expression();
         virtual void build_number(double n);
         virtual void build_add_operand();
         virtual void build_division_operand();

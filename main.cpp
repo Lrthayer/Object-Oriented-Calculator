@@ -60,7 +60,7 @@ void parse_expr(const std::string &infix)
         }
     }
 	//finish expression
-	b.build_expression();
+	b.finish_expression();
     Eval_Expr_Tree eval;
     Expr_Node *evalTree = b.get_expression();
     evalTree->accept(eval);

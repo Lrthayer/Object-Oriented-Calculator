@@ -22,6 +22,33 @@ void Expr_Tree_Builder::start_expression(void)
 
 void Expr_Tree_Builder::build_expression()
 {
+	Binary_Expr_Node *lastOperator = nullptr;
+	while (n_.size() != 0)
+	{
+		//if there are less than 2 items left in the operands stack, we know there isn't enough to build a binary expression
+		if (n_.size() < 2)
+			break;
+
+		Binary_Expr_Node * expression = (Binary_Expr_Node*)o_.top();
+		if (lastOperator && expression->getPrec() > lastOperator->getPrec())
+			break;
+		lastOperator = expression;
+
+		o_.pop();
+
+		expression->setRightLeaf(this->n_.front());
+		this->n_.pop_front();
+
+		expression->setLeftLeaf(this->n_.front());
+		this->n_.pop_front();
+
+		this->n_.push_front(expression);
+		tree_->setTree(expression);
+	}
+}
+
+void Expr_Tree_Builder::finish_expression()
+{
 	while (n_.size() != 0)
 	{
 		//if there are less than 2 items left in the operands stack, we know there isn't enough to build a binary expression
@@ -109,13 +136,25 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
     {
         o_.push(node);
     }
-	else if (node->getPrec() >= o_.top()->getPrec())
+
+	else
 	{
-		o_.push(node);
+		bool checkingPrec = true;
+		while (checkingPrec)
+		{
+			if (node->getPrec() > o_.top()->getPrec())
+			{
+				checkingPrec = false;
+				o_.push(node);
+			}
+			else
+			{
+				build_expression();
+				if (o_.empty())
+					checkingPrec = false;
+				o_.push(node);
+			}
+		}
 	}
-    else
-    {
-		build_expression();
-		o_.push(node);
-    }
 }
+
