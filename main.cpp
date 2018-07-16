@@ -72,7 +72,10 @@ int main()
 	// get input from STDIN concrete factory
 	bool running = true;
 	std::string userInput;
+	parse_expr("1 + ( 3 * 3 ) * 2");
 	parse_expr("( 4 * ( 2 - 2 ) ) + 10 * 2 - 25");
+	parse_expr("( 2 + 2 ) / 4");
+	parse_expr("3 * 8 / 6 - 4");
 	while(running)
     {
 		bool keepGoing = true;
