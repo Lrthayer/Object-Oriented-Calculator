@@ -28,7 +28,6 @@ void Expr_Tree_Builder::build_expression(Expr_Node *PrecNode)
 		if (n_.size() < 2)
 			break;
 
-		std::cout << o_.top()->getPrec();
 		Binary_Expr_Node * expression = (Binary_Expr_Node*)o_.top();
 		if (static_cast<Binary_Expr_Node*>(PrecNode))
 		{
@@ -141,21 +140,15 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
 
 	else
 	{
-		bool checkingPrec = true;
-		//while (checkingPrec)
-		//{
-			std::cout << o_.top();
-			if (node->getPrec() > o_.top()->getPrec())
-			{
-				checkingPrec = false;
-				o_.push(node);
-			}
-			else
-			{
-				build_expression(node);
-				o_.push(node);
-			}
-		//}
+		if (node->getPrec() > o_.top()->getPrec())
+		{
+			o_.push(node);
+		}
+		else
+		{
+			build_expression(node);
+			o_.push(node);
+		}
 	}
 }
 

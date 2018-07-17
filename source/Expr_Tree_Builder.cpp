@@ -20,7 +20,7 @@ void Expr_Tree_Builder::start_expression(void)
     this->tree_ = new Expr_Tree();
 }
 
-void Expr_Tree_Builder::build_expression()
+void Expr_Tree_Builder::build_expression(Expr_Node *PrecNode)
 {
 	while (n_.size() != 0)
 	{
@@ -28,20 +28,26 @@ void Expr_Tree_Builder::build_expression()
 		if (n_.size() < 2)
 			break;
 
+		std::cout << o_.top()->getPrec();
 		Binary_Expr_Node * expression = (Binary_Expr_Node*)o_.top();
+		if (static_cast<Binary_Expr_Node*>(PrecNode))
+		{
+			if (PrecNode->getPrec() > expression->getPrec())
+				break;
+		}
+
 		o_.pop();
 
-		expression->setRightLeaf(this->n_.front());
-		this->n_.pop_front();
+		expression->setRightLeaf(this->n_.top());
+		this->n_.pop();
 
-		expression->setLeftLeaf(this->n_.front());
-		this->n_.pop_front();
+		expression->setLeftLeaf(this->n_.top());
+		this->n_.pop();
 
-		this->n_.push_front(expression);
+		this->n_.push(expression);
 		tree_->setTree(expression);
 	}
 }
-
 //take all the operators and numbers that have been set according to precedence and build the tree
 Expr_Node* Expr_Tree_Builder::get_expression(void)
 {
@@ -92,7 +98,7 @@ void Expr_Tree_Builder::build_add_operand(void)
 void Expr_Tree_Builder::build_number(double n)
 {
     Number_Node *nNode = new Number_Node(n);
-    n_.push_front(nNode);
+    n_.push(nNode);
 
 }
 
@@ -109,13 +115,24 @@ void Expr_Tree_Builder::checkPrec(Expr_Node *node)
     {
         o_.push(node);
     }
-	else if (node->getPrec() >= o_.top()->getPrec())
+
+	else
 	{
-		o_.push(node);
+		bool checkingPrec = true;
+		//while (checkingPrec)
+		//{
+			std::cout << o_.top();
+			if (node->getPrec() > o_.top()->getPrec())
+			{
+				checkingPrec = false;
+				o_.push(node);
+			}
+			else
+			{
+				build_expression(node);
+				o_.push(node);
+			}
+		//}
 	}
-    else
-    {
-		build_expression();
-		o_.push(node);
-    }
 }
+
