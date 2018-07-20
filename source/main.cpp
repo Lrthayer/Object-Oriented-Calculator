@@ -5,9 +5,9 @@
 
 #include <stdio.h>
 #include "Expr_Node.h"
-#include "Expr_Builder.h"
+#include "Expr_Builder_Interface.h"
 #include "Expr_Tree_Builder.h"
-#include "Eval_Expr_Tree.h"
+#include "Expr_Tree_Eval_Visitor.h"
 
 //parse, call builder
 void parse_expr(const std::string &infix)
@@ -61,7 +61,7 @@ void parse_expr(const std::string &infix)
     }
 	//finish expression
 	b.build_expression();
-    Eval_Expr_Tree eval;
+    Expr_Tree_Eval_Visitor eval;
     Expr_Node *evalTree = b.get_expression();
     evalTree->accept(eval);
     std::cout << "\n" << eval.result() << "\n";

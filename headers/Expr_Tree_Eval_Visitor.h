@@ -10,11 +10,11 @@
 #include "Number_Node.h"
 
 //used for eval, after tree is built
-class Eval_Expr_Tree : public Expr_Node_Visitor
+class Expr_Tree_Eval_Visitor : public Expr_Node_Visitor
 {
     public:
-        Eval_Expr_Tree();
-        virtual ~Eval_Expr_Tree();
+		Expr_Tree_Eval_Visitor();
+        virtual ~Expr_Tree_Eval_Visitor();
 
         //Methods for visiting concrete nodes, visit left node, visit right node, then perform eval
         virtual void Visit_Add_Expr_Node(Add_Expr_Node &node);

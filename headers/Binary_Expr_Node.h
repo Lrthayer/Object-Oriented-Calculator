@@ -16,7 +16,6 @@ class Binary_Expr_Node : public Expr_Node
 		virtual void setRightLeaf(Expr_Node *newLeaf);
 		virtual Expr_Node* getLeftLeaf();
 		virtual void setLeftLeaf(Expr_Node *newLeaf);
-        virtual int eval();
 
 	private:
 		Expr_Node *rightLeaf;

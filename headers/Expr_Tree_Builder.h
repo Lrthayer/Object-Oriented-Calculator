@@ -1,7 +1,7 @@
 #ifndef EXPR_TREE_BUILDER_H
 #define EXPR_TREE_BUILDER_H
 
-#include "Expr_Builder.h"
+#include "Expr_Builder_Interface.h"
 #include "Expr_Tree.h"
 #include <stack>
 #include <list>
@@ -13,7 +13,7 @@
 #include "Number_Node.h"
 
 //buildes Expr_Tree
-class Expr_Tree_Builder : public Expr_Builder
+class Expr_Tree_Builder : public Expr_Builder_Interface
 {
     public:
         Expr_Tree_Builder();

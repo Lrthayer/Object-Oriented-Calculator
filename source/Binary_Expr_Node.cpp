@@ -28,8 +28,3 @@ void Binary_Expr_Node::setLeftLeaf(Expr_Node * newLeaf)
 {
 	this->leftLeaf = newLeaf;
 }
-
-int Binary_Expr_Node::eval()
-{
-    return 0;
-}

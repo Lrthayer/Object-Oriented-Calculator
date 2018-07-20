@@ -1,14 +1,14 @@
-#ifndef EXPR_BUILDER_H
-#define EXPR_BUILDER_H
+#ifndef EXPR_BUILDER_INTERFACE_H
+#define EXPR_BUILDER_INTERFACE_H
 
 #include "Expr_Node.h"
 
 //Interface for Expr_Tree_Builder
-class Expr_Builder
+class Expr_Builder_Interface
 {
     public:
-        Expr_Builder();
-        virtual ~Expr_Builder();
+		Expr_Builder_Interface();
+        virtual ~Expr_Builder_Interface();
         virtual void start_expression (void);
         virtual void build_number (double n) = 0;
         virtual void build_add_operand (void) = 0;
@@ -16,10 +16,9 @@ class Expr_Builder
         virtual void build_modular_operand (void) = 0;
         virtual void build_multiplication_operand (void) = 0;
         virtual void build_division_operand (void) = 0;
-       // virtual void build_open_parenthesis (void) = 0;
-       // virtual void build_close_parenthesis (void) = 0;
+
         // get the current expression
-        virtual Expr_Node * get_expression (void) = 0;
+        virtual Expr_Node *get_expression (void) = 0;
     protected:
     private:
 };
