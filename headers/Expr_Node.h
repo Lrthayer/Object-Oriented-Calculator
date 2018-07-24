@@ -11,6 +11,7 @@ class Expr_Node
         virtual void accept(Expr_Node_Visitor &v) = 0;
         virtual int getPrec();
 		virtual void setPrec(int);
+		virtual void deleteThis() = 0;
 
 	protected:
 		int prec;

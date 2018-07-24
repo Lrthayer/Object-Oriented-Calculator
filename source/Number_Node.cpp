@@ -17,6 +17,11 @@ void Number_Node::accept(Expr_Node_Visitor& v)
     v.Visit_Number_Node(*this);
 }
 
+void Number_Node::deleteThis()
+{
+	delete this;
+}
+
 double Number_Node::getVal()
 {
     return val;

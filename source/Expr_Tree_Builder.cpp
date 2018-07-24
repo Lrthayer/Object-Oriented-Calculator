@@ -11,7 +11,7 @@ Expr_Tree_Builder::Expr_Tree_Builder()
 
 Expr_Tree_Builder::~Expr_Tree_Builder()
 {
-    //dtor
+	delete this->tree_;
 }
 
 //start the expression by creating the tree to start building
@@ -88,6 +88,12 @@ void Expr_Tree_Builder::build_close_parenteses(void)
 	this->inParentheses -= 3;
 }
 
+void Expr_Tree_Builder::build_exponenet_operand()
+{
+	Exponent_Expr_Node *node = new Exponent_Expr_Node();
+	checkPrec(node);
+}
+
 void Expr_Tree_Builder::build_add_operand(void)
 {
     Add_Expr_Node *node = new Add_Expr_Node();
@@ -98,7 +104,6 @@ void Expr_Tree_Builder::build_number(double n)
 {
     Number_Node *nNode = new Number_Node(n);
     n_.push(nNode);
-
 }
 
 //sort operators in stack according to precedence, if operator empty just pass node, if prec occures set current stack top to previous numbers, else nothing

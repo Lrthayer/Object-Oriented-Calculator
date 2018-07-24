@@ -42,6 +42,10 @@ void parse_expr(const std::string &infix)
         {
             b.build_modular_operand();
         }
+		else if (token == "^")
+		{
+			b.build_exponenet_operand();
+		}
 		else if (token == "(")
 		{
 			b.build_open_parentheses();

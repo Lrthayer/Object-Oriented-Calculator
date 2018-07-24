@@ -8,6 +8,7 @@
 #include "Mod_Expr_Node.h"
 #include "Div_Expr_Node.h"
 #include "Number_Node.h"
+#include "Exponent_Expr_Node.h"
 
 //used for eval, after tree is built
 class Expr_Tree_Eval_Visitor : public Expr_Node_Visitor
@@ -22,6 +23,7 @@ class Expr_Tree_Eval_Visitor : public Expr_Node_Visitor
         virtual void Visit_Mod_Expr_Node(Mod_Expr_Node &node);
         virtual void Visit_Mult_Expr_Node(Mult_Expr_Node &node);
         virtual void Visit_Div_Expr_Node(Div_Expr_Node &node);
+		virtual void Visit_Exponent_Expr_Node(Exponent_Expr_Node &node);
         virtual void Visit_Number_Node( Number_Node &node);
         double result();
 

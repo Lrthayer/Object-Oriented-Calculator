@@ -10,6 +10,7 @@
 #include "Mod_Expr_Node.h"
 #include "Add_Expr_Node.h"
 #include "Sub_Expr_Node.h"
+#include "Exponent_Expr_Node.h"
 #include "Number_Node.h"
 
 //buildes Expr_Tree
@@ -28,6 +29,7 @@ class Expr_Tree_Builder : public Expr_Builder_Interface
         virtual void build_subtract_operand();
 		virtual void build_open_parentheses();
 		virtual void build_close_parenteses();
+		virtual void build_exponenet_operand();
 
         void checkPrec(Expr_Node *node);
         Expr_Node *get_expression();

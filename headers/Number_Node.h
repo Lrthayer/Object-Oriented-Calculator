@@ -11,8 +11,9 @@ class Number_Node : public Expr_Node
         Number_Node(double n);
         virtual ~Number_Node();
         virtual void accept (Expr_Node_Visitor &v);
-        double getVal();
+		virtual void deleteThis();
 
+        double getVal();
     private:
         double val;
 };

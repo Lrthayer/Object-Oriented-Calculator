@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Expr_Tree_Eval_Visitor.h"
+#include <math.h>
 
 Expr_Tree_Eval_Visitor::Expr_Tree_Eval_Visitor()
     :
@@ -27,6 +28,19 @@ void Expr_Tree_Eval_Visitor::Visit_Div_Expr_Node(Div_Expr_Node& node)
     numL = this->result();
 
     result_ = numL / numR;
+}
+
+void Expr_Tree_Eval_Visitor::Visit_Exponent_Expr_Node(Exponent_Expr_Node & node)
+{
+	double numL, numR;
+	node.getRightLeaf()->accept(*this);
+	numR = this->result();
+
+	node.getLeftLeaf()->accept(*this);
+	numL = this->result();
+
+	result_ = pow(numL,numR);
+
 }
 
 void Expr_Tree_Eval_Visitor::Visit_Mult_Expr_Node(Mult_Expr_Node& node)

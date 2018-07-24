@@ -28,3 +28,13 @@ void Binary_Expr_Node::setLeftLeaf(Expr_Node * newLeaf)
 {
 	this->leftLeaf = newLeaf;
 }
+
+void Binary_Expr_Node::deleteThis()
+{
+	if (this->rightLeaf != nullptr)
+		this->rightLeaf->deleteThis();
+	if (this->leftLeaf != nullptr)
+		this->leftLeaf->deleteThis();
+
+	delete this;
+}
